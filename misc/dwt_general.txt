@@ -1,0 +1,32 @@
+clear all;
+
+img =  [73 61 66 64 61 64 52 55;
+         72 55 90 69 85 69 63 59;
+         108 83 138 104 128 104 95 89;
+         87 69 35 56 22 56 23 55 ;
+         174 138 70 112 44 112 46 110;
+         225 69 78 189 85 189 25 88;
+         245 168 32 100 69 100 125 253;
+         10 251 22 111 29 111 222 25];
+     
+dim = size(img);
+nimg = zeros(dim(1),dim(2));
+L = log2(dim(1));
+
+fil_A = [1 1 ; 1 1];
+fil_B = [1 -1 ; 1 -1];
+fil_C = [1 1 ; -1 -1];
+fil_D = [1 -1 ; -1 1];
+
+for level = 1:L
+    iter = dim(1)/2^(level-1);
+    for row = 1:2:iter-1
+        for col = 1:2:iter-1
+            nimg(row-((row-1)/2),col-((col-1)/2)) = sum(sum(img(row:row+1,col:col+1).*fil_A))/4;
+            nimg(row-((row-1)/2),col-((col-1)/2)+iter/2) = sum(sum(img(row:row+1,col:col+1).*fil_B))/4;
+            nimg(row-((row-1)/2)+iter/2,col-((col-1)/2)) = sum(sum(img(row:row+1,col:col+1).*fil_C))/4;
+            nimg(row-((row-1)/2)+iter/2,col-((col-1)/2)+iter/2) = sum(sum(img(row:row+1,col:col+1).*fil_D))/4;
+        end;
+    end;
+    img = nimg;
+end;
