@@ -1,0 +1,14 @@
+clear all;
+clc;
+a=imread('peppers.png');
+[m,n,o]=size(a);
+r=a(:,:,1);
+g=a(:,:,2);
+b=a(:,:,3);
+c(:,:,1)=g;
+c(:,:,2)=b;
+c(:,:,3)=r;
+figure(1);
+imshow(c);
+figure(2);
+imshow(a);

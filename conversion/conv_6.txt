@@ -1,0 +1,16 @@
+clear all;
+a=imread('rice.png');
+for i=1:256
+	for j=1:256
+    	if(a(i,j)<=64)
+    	a(i,j)=(-255/64)*a(i,j)+255;
+    	elseif(64<a(i,j)&&a(i,j)<=127)
+     	a(i,j)=(255/63)*(a(i,j)-64);
+    	elseif(127<a(i,j)&&a(i,j)<=192)
+      	a(i,j)=(-255/65)*(a(i,j)-192);
+     	elseif(192<a(i,j)&&a(i,j)<=255)
+       	a(i,j)=(255/63)*(a(i,j)-192);
+    	end
+	end
+end
+imshow(a);

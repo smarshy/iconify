@@ -1,0 +1,12 @@
+clear all;
+a=imread('rice.png');
+for i=1:256
+	for j=1:256
+    	if(a(i,j)<=127)
+    	a(i,j)=(8/7)*a(i,j);
+    	else
+     	a(i,j)=255;
+    	end
+	end
+end
+imshow(a)

@@ -1,0 +1,19 @@
+clear all;
+a=imread('rice.png');
+for i=1:256
+	for j=1:256
+    	if(a(i,j)<75)
+    	a(i,j)=((60/75)*a(i,j));
+    	elseif(75<=a(i,j)&&a(i,j)<120)
+     	a(i,j)=((195/35)*(a(i,j)-75)+60);
+    	elseif(175<=a(i,j)&&a(i,j)<=200)
+      	a(i,j)=((-67/25)*(a(i,j)-175))+127;
+     	elseif(200<a(i,j)&&a(i,j)<=225)
+       	a(i,j)=60;
+     	elseif(225<a(i,j)&&a(i,j)<=255)
+     	a(i,j)=(-30/25)*(a(i,j)-255);
+  	
+       	end
+	end
+end
+imshow(a);
