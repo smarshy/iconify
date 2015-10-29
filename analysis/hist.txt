@@ -1,0 +1,15 @@
+clear all;
+a=imread('rice.png');
+x=zeros(1,256);
+y=zeros(1,256);
+for h=1:256
+	y(h)=h;
+end
+k=0;
+for i=1:256
+	for j=1:256
+    	k=a(i,j);
+    	x(k)=x(k)+1;
+	end
+end
+plot(y,x);
